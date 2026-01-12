@@ -9,7 +9,7 @@ var _lastState = {
 var _highlightTimeout = null;
 var _HIGHLIGHT_DELAY = 120;
 var DEBUG = true;
-var VWORLD_API_KEY = '3907B382-CD3D-304B-A82F-C7BFA4286232'; // (참고용)
+var VWORLD_API_KEY = 'API_KEY'; // (참고용)
 var _lastAddressRequestId = 0;
 // const _dataCache = new Map(); // (사용 안 함, API가 DB에서 직접 가져옴)
 
