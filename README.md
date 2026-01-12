@@ -3,7 +3,7 @@
 > **"데이터 기반의 도심 에너지 효율 최적화 플랫폼"**  
 > 대전광역시 3D 건물 에너지 통합 분석 및 AI 소비 예측 시뮬레이터
 
-![Project Banner](https://via.placeholder.com/1200x500.png?text=Daejeon+Energy+Insight+Dashboard)
+![Project Banner](assets/project_banner.png)
 *(프로젝트 스크린샷이나 배너 이미지가 있다면 여기에 링크를 넣어주세요)*
 
 ## 📝 프로젝트 개요 (Project Overview)
