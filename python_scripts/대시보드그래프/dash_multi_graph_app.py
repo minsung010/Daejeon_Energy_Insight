@@ -31,7 +31,7 @@ JOIN_KEY = 'MATCH_KEY'
 BUILDING_INFO_TABLE = 'building_master'
 ENERGY_USAGE_TABLE = 'energy_usage'
 CURRENT_YEAR = 2025
-KAKAO_API_KEY = "b94049e187fec449c1c60cf891964df7"
+KAKAO_API_KEY = "API_KEY"
 try:
     oracledb.init_oracle_client(lib_dir=None, config_dir=None)
 except Exception:
