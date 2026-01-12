@@ -1,0 +1,122 @@
+package com.daejeon.my.map.service;
+
+import com.daejeon.my.dao.BuildingMasterMapper;
+import com.daejeon.my.dao.EnergyUsageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@Service
+public class MapDataService {
+
+    @Autowired
+    private BuildingMasterMapper buildingMapper; 
+
+    @Autowired
+    private EnergyUsageMapper energyMapper; 
+    
+    // (기존 BuildingDataService의 Bounding Box 계산 로직 재사용)
+    private Map<String, Double> getBoundingBox(double lon, double lat, double radiusM) {
+        double latDegree = 110941.0; 
+        double lonDegree = 88716.0; 
+        double radiusLat = radiusM / latDegree;
+        double radiusLon = radiusM / lonDegree;
+        
+        Map<String, Double> bounds = new HashMap<>();
+        bounds.put("minLat", lat - radiusLat);
+        bounds.put("maxLat", lat + radiusLat);
+        bounds.put("minLon", lon - radiusLon);
+        bounds.put("maxLon", lon + radiusLon);
+        return bounds;
+    }
+    
+    // (노후도 4단계 분류 로직)
+    private String getAgeCategory(Object ageObj) {
+        if (ageObj == null) return "정보 없음";
+        double ageNum = 0.0;
+        
+        if (ageObj instanceof BigDecimal bd) {
+             ageNum = bd.doubleValue();
+        } else if (ageObj instanceof Number num) {
+             ageNum = num.doubleValue();
+        } else {
+             return "정보 없음";
+        }
+
+        if (ageNum <= 9) return "0~9년";
+        if (ageNum <= 20) return "10~20년"; // (JS와 동일한 20년 기준)
+        if (ageNum <= 30) return "20~30년"; // (JS와 동일한 30년 기준)
+        return "30년이상";
+    }
+
+    /**
+     * 지도를 클릭했을 때 그래프 3종 세트 데이터를 반환
+     */
+    public Map<String, Object> getDashboardData(double lon, double lat) {
+        
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> myHouseResult = new HashMap<>();
+        Map<String, Object> nearbyResult = new HashMap<>();
+        Map<String, Object> regionResult = new HashMap<>();
+        
+        // --- 1. '내 주택' 및 '인근 주택' 후보 찾기 (500m 반경) ---
+        Map<String, Double> bounds = getBoundingBox(lon, lat, 500.0);
+        
+        // (BuildingDataService와 동일하게, Mapper 호출 순서 준수)
+        List<Map<String, Object>> candidates = buildingMapper.findCandidatesByBoundingBox(
+            bounds.get("minLat"), bounds.get("maxLat"), 
+            bounds.get("minLon"), bounds.get("maxLon"), 
+            lat, lon, 
+            100 // (인근 100개 건물로 제한)
+        );
+
+        if (candidates == null || candidates.isEmpty()) {
+            result.put("error", "주변 500m 내에 건물이 없습니다.");
+            return result;
+        }
+
+        // --- 2. '내 주택' (Viz 1) ---
+        Map<String, Object> myHouse = candidates.get(0);
+        String myHouseMatchKey = (String) myHouse.get("MATCH_KEY");
+        String myHouseGuName = (String) myHouse.get("GU_NAME");
+        String myHouseBildPrpos = (String) myHouse.get("BILD_PRPOS");
+        String myHouseAgeCategory = getAgeCategory(myHouse.get("BULD_SPANU_NUM"));
+        
+        myHouseResult.put("match_key", myHouseMatchKey);
+        myHouseResult.put("age", myHouse.get("BULD_SPANU_NUM"));
+        myHouseResult.put("purpose", myHouseBildPrpos);
+        myHouseResult.put("ageCategory", myHouseAgeCategory); // (JS에서 사용)
+        
+        List<Map<String, Object>> myHouseEnergy = energyMapper.findMyHouseEnergyData(myHouseMatchKey);
+        myHouseResult.put("energyData", myHouseEnergy);
+        
+        result.put("myHouse", myHouseResult);
+
+        // --- 3. '인근 주택' (Viz 2) ---
+        List<String> nearbyMatchKeys = candidates.stream()
+                                    .map(c -> (String) c.get("MATCH_KEY"))
+                                    .collect(Collectors.toList());
+
+        // (Mapper를 수정하여 '유형'과 '노후도'로 필터링)
+        // (EnergyUsageMapper.xml도 이와 맞게 수정해야 함)
+        Double nearbyAvg = energyMapper.findNearbyEnergyAverage(nearbyMatchKeys); // (단순화: 일단 전체 평균)
+        
+        nearbyResult.put("avg_toe", nearbyAvg);
+        nearbyResult.put("count", nearbyMatchKeys.size());
+        result.put("nearby", nearbyResult);
+        
+        // --- 4. '지역' (Viz 3) ---
+        Double regionAvg = energyMapper.findRegionEnergyAverage(myHouseGuName); // (단순화: 일단 구 전체 평균)
+        
+        regionResult.put("region_name", myHouseGuName);
+        regionResult.put("avg_toe", regionAvg);
+        result.put("region", regionResult);
+
+        return result;
+    }
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daejeon.my.dao.EnergyUsageMapper">
+
+    <sql id="toePerArea">
+      CASE 
+        WHEN bm.BILD_AREA IS NOT NULL AND bm.BILD_AREA > 0 
+        THEN eu.TOE_TOTAL / bm.BILD_AREA 
+        ELSE NULL 
+      END
+    </sql>
+
+    <select id="findMyHouseEnergyData" resultType="java.util.Map">
+        SELECT 
+            t3."Year" AS "year",
+            AVG(<include refid="toePerArea" />) AS "toe_per_area"
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        JOIN 
+            DIM_DATE t3 ON eu.DATE_KEY = t3.DATE_KEY
+        WHERE 
+            eu.MATCH_KEY = #{matchKey}
+        GROUP BY 
+            t3."Year"
+        ORDER BY 
+            t3."Year"
+    </select>
+    
+    <select id="findNearbyEnergyAverage" resultType="double">
+        SELECT 
+            AVG(<include refid="toePerArea" />)
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        WHERE 
+            eu.MATCH_KEY IN
+            <foreach item="key" collection="matchKeys" open="(" separator="," close=")">
+                #{key}
+            </foreach>
+    </select>
+
+    <select id="findRegionEnergyAverage" resultType="double">
+        SELECT 
+            AVG(<include refid="toePerArea" />)
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        WHERE 
+            bm.GU_NAME = #{guName}
+    </select>
+</mapper>

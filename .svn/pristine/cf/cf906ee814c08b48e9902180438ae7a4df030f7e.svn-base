@@ -1,0 +1,341 @@
+/* ================= 공통 리셋 =========== ===ㄴ=== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  background-color: #E3ECDF;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- 1. 왼쪽 사이드바 기본 --- */
+.sidebar {
+  width: 280px;
+  background-color: #8eab7c;
+  padding: 20px;
+  padding-bottom: 40px;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  font-weight: bold;
+  color: #2d5c2d;
+  background: rgba(77, 124, 77, 0.1);
+}
+
+/* --- 2. 메인 컨텐츠 --- */
+.main {
+  flex: 1;
+  margin-left: 15px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  min-height: 300px;
+}
+
+.placeholder {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 0;
+  display: flex;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* VWorld 지도 컨테이너 */
+#vmap {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* --- 3. 지도 내부 슬라이드 사이드바 --- */
+.map-sidebar {
+  position: absolute;
+  top: 0;
+  left: -400px;
+  width: 380px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 3px 0 20px rgba(0,0,0,0.3);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 0 12px 12px 0;
+  z-index: 2000;
+}
+
+.map-sidebar.open {
+  left: 0;
+}
+
+.map-sidebar-header {
+  background: linear-gradient(135deg, #4d7c4d 0%, #3b5f3b 100%);
+  color: white;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.map-sidebar-content {
+  padding: 20px;
+}
+
+.map-search {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f5f9f4;
+  border: 1px solid #d8e6d2;
+  border-radius: 10px;
+}
+
+.map-search h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f4b2f;
+  margin-bottom: 10px;
+}
+
+.map-search-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.map-search-controls input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #b7c9b2;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.map-search-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #4d7c4d;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.map-search-btn:hover {
+  background: #3b5f3b;
+}
+
+.map-search-helper {
+  font-size: 12px;
+  color: #4c614c;
+  line-height: 1.4;
+}
+
+.info-section {
+  margin-bottom: 16px;
+}
+
+.info-section label {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.info-section .info-value {
+  font-size: 14px;
+  color: #333;
+  background: #f9f9f9;
+  padding: 10px 12px;
+  border-radius: 6px;
+  word-break: break-all;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.info-section .info-value.highlight {
+  background: #fffdd0;
+  font-weight: bold;
+  color: #5a5000;
+  border-color: #e6d700;
+}
+
+/* 그래프 영역 */
+.graph-section {
+  margin-top: 24px;
+}
+
+.graph-section h4 {
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #2f4b2f;
+}
+
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.graph-placeholder {
+  height: 160px;
+  border: 1px dashed #b7c9b2;
+  border-radius: 10px;
+  background: repeating-linear-gradient(45deg, #f8fbf7, #f8fbf7 10px, #eef4ec 10px, #eef4ec 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a7f69;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 지도 안쪽 토글 버튼 (원래 있던 구조용) */
+.map-sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+  z-index: 2001;
+  width: 40px;
+  height: 80px;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(135deg, #4d7c4d 0%, #3b5f3b 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.map-sidebar-toggle:hover {
+  background: linear-gradient(135deg, #3b5f3b 0%, #2d4a2d 100%);
+  transform: translateY(-50%) translateX(3px);
+  box-shadow: 4px 0 15px rgba(0,0,0,0.4);
+}
+
+.map-sidebar.open ~ .map-sidebar-toggle {
+  left: 380px;
+}
+
+.map-sidebar.open ~ .map-sidebar-toggle .arrow {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1200px) {
+  .map-sidebar {
+    width: 320px;
+  }
+  .map-sidebar.open ~ .map-sidebar-toggle {
+    left: 320px;
+  }
+}
+
+/* --- 분리된 왼쪽 사이드바(fragment) 접기용 --- */
+.sidebar.sidebar-collapsible {
+  position: relative;
+  transition: width .25s ease;
+}
+.sidebar.sidebar-collapsible .sidebar-toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 26px;
+  background: #d1dccf;
+  border: 1px solid #b5c3b1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 50;
+}
+.sidebar.sidebar-collapsible .sidebar-toggle-btn span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #324b33;
+  border-radius: 2px;
+}
+.sidebar.sidebar-collapsible.collapsed {
+  width: 70px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.sidebar.sidebar-collapsible.collapsed h2,
+.sidebar.sidebar-collapsible.collapsed .search-box,
+.sidebar.sidebar-collapsible.collapsed .menu .menu-label {
+  display: none !important;
+}
+.sidebar.sidebar-collapsible.collapsed .menu .menu-item {
+  justify-content: center;
+  gap: 0;
+  padding: 10px 0;
+}
+
+/* 🔥 혹시 다른 css나 스크립트가 덮어써도 이건 이긴다 */
+#mapSidebar.open {
+  left: 0 !important;
+}

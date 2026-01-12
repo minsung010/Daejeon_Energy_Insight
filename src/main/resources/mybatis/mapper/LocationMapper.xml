@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daejeon.my.dao.LocationMapper">
+
+  <select id="findByMatchKey" parameterType="string" resultType="com.daejeon.my.vo.Location">
+    SELECT match_key AS matchKey,
+      	   latitude,
+      longitude
+    FROM ENERGY_USING
+     WHERE match_key LIKE '%' || #{matchKey} || '%'
+     
+  </select>
+
+</mapper>

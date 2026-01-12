@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daejeon.my.dao.EnergyUsageMapper">
+
+    <sql id="toePerArea">
+      CASE 
+        WHEN bm.BILD_AREA IS NOT NULL AND bm.BILD_AREA > 0 
+        THEN eu.TOE_TOTAL / bm.BILD_AREA 
+        ELSE NULL 
+      END
+    </sql>
+
+    <select id="findMyHouseEnergyData" resultType="java.util.Map">
+        SELECT 
+            t3."Year"                             AS "year",
+            SUM(COALESCE(eu.USE_TOTAL, 0))         AS "use_total",
+            SUM(COALESCE(eu.USE_ELECTRIC, 0))      AS "use_electric",
+            SUM(COALESCE(eu.USE_GAS, 0))           AS "use_gas",
+            AVG(<include refid="toePerArea" />)   AS "toe_per_area"
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        JOIN 
+            DIM_DATE t3 ON eu.DATE_KEY = t3.DATE_KEY
+        WHERE 
+            eu.MATCH_KEY = #{matchKey}
+        GROUP BY 
+            t3."Year"
+        ORDER BY 
+            t3."Year"
+    </select>
+    
+    <select id="findNearbyEnergyAverage" resultType="java.util.Map">
+        SELECT 
+            AVG(COALESCE(eu.USE_TOTAL, 0))    AS "avg_total",
+            AVG(COALESCE(eu.USE_ELECTRIC, 0)) AS "avg_electric",
+            AVG(COALESCE(eu.USE_GAS, 0))      AS "avg_gas",
+            AVG(<include refid="toePerArea" />) AS "avg_toe"
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        WHERE 
+            eu.MATCH_KEY IN
+            <foreach item="key" collection="matchKeys" open="(" separator="," close=")">
+                #{key}
+            </foreach>
+    </select>
+
+    <select id="findRegionEnergyAverage" resultType="java.util.Map">
+        SELECT 
+            AVG(COALESCE(eu.USE_TOTAL, 0))    AS "avg_total",
+            AVG(COALESCE(eu.USE_ELECTRIC, 0)) AS "avg_electric",
+            AVG(COALESCE(eu.USE_GAS, 0))      AS "avg_gas",
+            AVG(<include refid="toePerArea" />) AS "avg_toe"
+        FROM 
+            ENERGY_USAGE eu
+        JOIN 
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        WHERE 
+            UPPER(bm.GU_NAME) LIKE '%' || UPPER(#{guName}) || '%'
+            <if test="purposeEquals != null and purposeEquals != ''">
+                AND (
+                    UPPER(NVL(bm.BILD_PRPOS, '')) = UPPER(#{purposeEquals})
+                    <if test="purposeLike != null and purposeLike != ''">
+                        OR UPPER(NVL(bm.BILD_PRPOS, '')) LIKE UPPER(#{purposeLike})
+                    </if>
+                )
+            </if>
+    </select>
+
+    <select id="findNearbyEnergySeries" resultType="java.util.Map">
+        SELECT
+            t3."Year"                          AS "year",
+            AVG(COALESCE(eu.USE_TOTAL, 0))      AS "use_total",
+            AVG(COALESCE(eu.USE_ELECTRIC, 0))   AS "use_electric",
+            AVG(COALESCE(eu.USE_GAS, 0))        AS "use_gas",
+            AVG(<include refid="toePerArea" />) AS "toe_per_area"
+        FROM
+            ENERGY_USAGE eu
+        JOIN
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        JOIN
+            DIM_DATE t3 ON eu.DATE_KEY = t3.DATE_KEY
+        WHERE
+            eu.MATCH_KEY IN
+            <foreach item="key" collection="matchKeys" open="(" separator="," close=")">
+                #{key}
+            </foreach>
+        GROUP BY
+            t3."Year"
+        ORDER BY
+            t3."Year"
+    </select>
+
+    <select id="findRegionEnergySeries" resultType="java.util.Map">
+        SELECT
+            t3."Year"                          AS "year",
+            AVG(COALESCE(eu.USE_TOTAL, 0))      AS "use_total",
+            AVG(COALESCE(eu.USE_ELECTRIC, 0))   AS "use_electric",
+            AVG(COALESCE(eu.USE_GAS, 0))        AS "use_gas",
+            AVG(<include refid="toePerArea" />) AS "toe_per_area"
+        FROM
+            ENERGY_USAGE eu
+        JOIN
+            BUILDING_MASTER bm ON eu.MATCH_KEY = bm.MATCH_KEY
+        JOIN
+            DIM_DATE t3 ON eu.DATE_KEY = t3.DATE_KEY
+        WHERE
+            UPPER(bm.GU_NAME) LIKE '%' || UPPER(#{guName}) || '%'
+            <if test="purposeEquals != null and purposeEquals != ''">
+                AND (
+                    UPPER(NVL(bm.BILD_PRPOS, '')) = UPPER(#{purposeEquals})
+                    <if test="purposeLike != null and purposeLike != ''">
+                        OR UPPER(NVL(bm.BILD_PRPOS, '')) LIKE UPPER(#{purposeLike})
+                    </if>
+                )
+            </if>
+        GROUP BY
+            t3."Year"
+        ORDER BY
+            t3."Year"
+    </select>
+</mapper>

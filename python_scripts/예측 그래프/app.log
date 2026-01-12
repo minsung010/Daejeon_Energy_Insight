@@ -1,0 +1,492 @@
+nohup: 입력 무시
+[2025-11-20 14:28:16 +0900] [18043] [INFO] Starting gunicorn 23.0.0
+[2025-11-20 14:28:16 +0900] [18043] [INFO] Listening at: http://0.0.0.0:8051 (18043)
+[2025-11-20 14:28:16 +0900] [18043] [INFO] Using worker: sync
+[2025-11-20 14:28:16 +0900] [18044] [INFO] Booting worker with pid: 18044
+[2025-11-20 14:28:16 +0900] [18056] [INFO] Booting worker with pid: 18056
+[2025-11-20 14:28:16 +0900] [18068] [INFO] Booting worker with pid: 18068
+[2025-11-20 14:28:16 +0900] [18080] [INFO] Booting worker with pid: 18080
+[2025-11-20 14:33:35 +0900] [18043] [CRITICAL] WORKER TIMEOUT (pid:18068)
+[2025-11-20 14:33:35 +0900] [18068] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/workers/sync.py", line 133, in handle
+    req = next(parser)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/parser.py", line 41, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/message.py", line 259, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/message.py", line 271, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/message.py", line 262, in get_data
+    data = unreader.read()
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/unreader.py", line 36, in read
+    d = self.chunk()
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/team1/anaconda3/envs/epro/lib/python3.10/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2025-11-20 14:33:35 +0900] [18068] [INFO] Worker exiting (pid: 18068)
+--- [EPRO] Flask 서버: 1단계 CSV 로드 및 GDF 변환 시작 ---
+--- 1단계 GDF (EPSG:3857) 메모리 로드 성공: 79821 건 ---
+[2025-11-20 14:33:36 +0900] [18640] [INFO] Booting worker with pid: 18640
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+[2025-11-20 17:52:57 +0900] [18043] [INFO] Handling signal: hup
+[2025-11-20 17:52:57 +0900] [18043] [INFO] Hang up: Master
+[2025-11-20 17:52:57 +0900] [25449] [INFO] Booting worker with pid: 25449
+[2025-11-20 17:52:57 +0900] [25451] [INFO] Booting worker with pid: 25451
+[2025-11-20 17:52:57 +0900] [25447] [INFO] Booting worker with pid: 25447
+[2025-11-20 17:52:57 +0900] [18043] [ERROR] Worker (pid:18080) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [18043] [ERROR] Worker (pid:18044) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [18043] [ERROR] Worker (pid:18056) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [25452] [INFO] Booting worker with pid: 25452
+[2025-11-20 17:52:57 +0900] [18043] [ERROR] Worker (pid:18640) was sent SIGHUP!
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:328: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44277 (\N{HANGUL SYLLABLE GONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 46041 (\N{HANGUL SYLLABLE DONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51452 (\N{HANGUL SYLLABLE JU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 53469 (\N{HANGUL SYLLABLE TAEG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 45380 (\N{HANGUL SYLLABLE NYEON}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 44032 (\N{HANGUL SYLLABLE GA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49828 (\N{HANGUL SYLLABLE SEU}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49324 (\N{HANGUL SYLLABLE SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50857 (\N{HANGUL SYLLABLE YONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 47049 (\N{HANGUL SYLLABLE RYANG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 49892 (\N{HANGUL SYLLABLE SIL}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51228 (\N{HANGUL SYLLABLE JE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 50696 (\N{HANGUL SYLLABLE YE}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 52769 (\N{HANGUL SYLLABLE CEUG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 48372 (\N{HANGUL SYLLABLE BO}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")
+/home/team1/workspace/epro/app.py:331: UserWarning: Glyph 51221 (\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.
+  fig.savefig(buf, format="png")

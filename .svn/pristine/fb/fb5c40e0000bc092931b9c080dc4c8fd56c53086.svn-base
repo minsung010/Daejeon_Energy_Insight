@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E pro Map</title>
+
+  <!-- vWorld -->
+  <script
+    type="text/javascript"
+    src="https://map.vworld.kr/js/webglMapInit.js.do?version=3.0&apiKey=3907B382-CD3D-304B-A82F-C7BFA4286232">
+  </script>
+
+  <!-- 너 원래 CSS -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css" />
+
+  <style>
+    .placeholder {
+      position: relative;
+    }
+
+    /* 1) 패널: transform으로 슬라이드 */
+    #mapSidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 380px;
+      height: 100%;
+      z-index: 2147483647;
+      pointer-events: auto;
+      transform: translateX(-100%);
+      transition: transform .35s ease;
+    }
+    /* placeholder에 클래스가 붙으면 패널이 열림 */
+    .placeholder.map-panel-open #mapSidebar {
+      transform: translateX(0);
+    }
+
+    /* 2) 버튼도 transform으로만 이동 (패널 열릴 때 같이) */
+    #mapSidebarToggleBtn {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      /* 기본은 패널이 안 보이니까 패널 바로 위에서 대기 */
+      transform: translate(0, -50%);
+      width: 40px;
+      height: 80px;
+      border: none;
+      border-radius: 0 10px 10px 0;
+      background: linear-gradient(135deg, #4d7c4d 0%, #3b5f3b 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+      z-index: 2147483647;
+      pointer-events: auto;
+      transition: transform .35s ease;
+    }
+    /* 패널이 열릴 때 버튼도 같은 시간에 같은 거리로 이동 */
+    .placeholder.map-panel-open #mapSidebarToggleBtn {
+      /* 패널 폭(380px)만큼 오른쪽으로, 위쪽은 그대로 -50% */
+      transform: translate(380px, -50%);
+    }
+
+    #mapSidebarToggleBtn .arrow {
+      transition: transform .35s ease;
+      display: inline-block;
+    }
+    .placeholder.map-panel-open #mapSidebarToggleBtn .arrow {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <!-- 공통 사이드바 -->
+  <div th:replace="fragments/sidebar :: sidebar"></div>
+
+  <!-- 메인 -->
+  <main class="main">
+    <div class="main-layout">
+      <!-- 🔥 여기 클래스 토글만으로 패널/버튼 둘 다 움직이게 할 거다 -->
+      <div class="placeholder map-panel-open" id="mapContainer">
+        <!-- 지도 -->
+        <div id="vmap" style="width:100%; height:100%; min-height:500px;"></div>
+
+        <!-- 지도 안쪽 사이드바 -->
+        <div id="mapSidebar" class="map-sidebar">
+          <div class="map-sidebar-header">
+            <h3>🏢 건물 정보</h3>
+          </div>
+
+          <div class="map-sidebar-content">
+            <div class="map-search">
+              <h4>🔍 주소 검색</h4>
+              <div class="map-search-controls">
+                <input type="text" id="mapSearchInput" placeholder="도로명 또는 지번을 입력하세요" />
+                <button id="mapSearchBtn" class="map-search-btn">검색</button>
+              </div>
+              <p class="map-search-helper">검색 후 지도를 이동하면 상단 카메라가 해당 위치로 이동합니다.</p>
+            </div>
+
+            <div class="info-section">
+              <label>📍 도로명주소</label>
+              <div class="info-value" id="sidebar_address">건물을 클릭해주세요</div>
+            </div>
+
+            <div class="info-section">
+              <label>⏰ 노후도</label>
+              <div class="info-value highlight" id="sidebar_age">-</div>
+            </div>
+
+            <div class="info-section detail-section">
+              <label>📋 상세정보</label>
+              <div class="info-value" id="sidebar_road">-</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="info-section">
+              <label>🏗️ 건물용도</label>
+              <div class="info-value" id="sidebar_purpose">-</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="graph-section">
+              <h4>📊 분석 그래프</h4>
+              <div class="graph-container" id="sidebar_graphs">
+                <div class="graph-placeholder">그래프 1 영역</div>
+                <div class="graph-placeholder">그래프 2 영역</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 지도 위 토글 버튼 -->
+        <button id="mapSidebarToggleBtn" type="button">
+          <span class="arrow">▶</span>
+        </button>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- vWorld 초기화 js -->
+  <script th:src="@{/js/script.js}" src="/js/script.js"></script>
+
+  <!-- 사이드바 여닫기: placeholder에만 클래스 토글 -->
+  <script>
+    (function () {
+      const container = document.getElementById('mapContainer');
+      const btn = document.getElementById('mapSidebarToggleBtn');
+      if (!container || !btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        container.classList.toggle('map-panel-open');
+      });
+    })();
+  </script>
+</body>
+</html>

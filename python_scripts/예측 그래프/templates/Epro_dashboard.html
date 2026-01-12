@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>E pro Dashboard</title>
+
+  <!-- vWorld WebGL (3.0) -->
+  <script
+    type="text/javascript"
+    src="https://map.vworld.kr/js/webglMapInit.js.do?version=3.0&apiKey=3907B382-CD3D-304B-A82F-C7BFA4286232">
+  </script>
+
+  <!-- 너 원래 CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_dash.css') }}?v=3">
+
+  <style>
+    :root {
+      --sidebar-width: 260px;      /* 펼쳐졌을 때 */
+      --sidebar-mini: 70px;        /* 접혔을 때 아이콘만 남는 폭 */
+      --toggle-size: 40px;
+      --toggle-gap: 14px;
+    }
+
+    /* 사이드바 기본 */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      z-index: 1000;
+      transition: width .25s ease, transform .25s ease;
+      background: #e0ecd9; /* 네 스샷이랑 비슷한 색으로 */
+      overflow: hidden;    /* 축소 시 내용 안 튀어나오게 */
+    }
+
+    /* 사이드바 안 내용 여유 */
+    .sidebar-body {
+      padding: 54px 16px 16px 16px; /* 위에 버튼 자리 54px */
+    }
+
+    /* 메인: 기본은 사이드바 폭만큼 밀려있음 */
+    .main {
+      margin-left: var(--sidebar-width);
+      transition: margin-left .25s ease;
+    }
+
+    /* 접힌 상태 */
+    body.sidebar-collapsed .sidebar {
+      width: var(--sidebar-mini);
+    }
+    body.sidebar-collapsed .main {
+      margin-left: var(--sidebar-mini);
+    }
+
+    /* 메뉴 아이템 구조화 */
+    .menu .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+    .menu .menu-item:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .menu .menu-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .menu .menu-label {
+      white-space: nowrap;
+    }
+
+    /* 접히면 글자만 숨겨 */
+    body.sidebar-collapsed .menu .menu-label {
+      display: none;
+    }
+    /* 접히면 안쪽 padding도 조금 줄이자 */
+    body.sidebar-collapsed .sidebar-body {
+      padding: 54px 8px 16px 8px;
+    }
+    body.sidebar-collapsed .search-box {
+      display: none; /* 좁은 상태에서는 검색창 숨김 */
+    }
+
+    /* 고정 햄버거 버튼 – 사이드바 오른쪽 위에 딱 붙어있게 */
+    .sidebar-toggle-btn {
+      position: fixed;
+      top: var(--toggle-gap);
+      left: calc(var(--sidebar-width) - var(--toggle-size) - var(--toggle-gap));
+      width: var(--toggle-size);
+      height: 32px;
+      background: #e6f0e1;
+      border: 1px solid #c3d3bd;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      padding: 4px 7px;
+      cursor: pointer;
+      z-index: 2000;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: left .25s ease;
+    }
+    .sidebar-toggle-btn span {
+      display: block;
+      height: 3px;
+      background: #324b33;
+      border-radius: 3px;
+    }
+    .sidebar-toggle-btn:hover {
+      background: #d7e7d0;
+    }
+
+    /* 접혔을 때는 버튼도 아이콘 레일 위에 남게 */
+    body.sidebar-collapsed .sidebar-toggle-btn {
+      left: calc(var(--sidebar-mini) - var(--toggle-size) - 6px);
+    }
+  </style>
+</head>
+<body>
+  <!-- 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-body">
+      <a href=""><h2 style="margin-bottom: 14px;">E pro</h2></a>
+
+
+      <nav class="menu">
+        <a href="Epro_map.html">
+          <div class="menu-item">
+            <span class="menu-icon">🌐</span>
+            <span class="menu-label">지도보기</span>
+          </div>
+        </a>
+        <a href="Epro.html">
+          <div class="menu-item">
+            <span class="menu-icon">📁</span>
+            <span class="menu-label">대시보드</span>
+          </div>
+        </a>
+        <a href="Epro_graph.html">
+          <div class="menu-item">
+            <span class="menu-icon">📈</span>
+            <span class="menu-label">그래프</span>
+          </div>
+        </a>
+        <div class="menu-item">
+            <span class="menu-icon">💬</span>
+            <span class="menu-label">항목1</span>
+        </div>
+        <div class="menu-item">
+            <span class="menu-icon">🧩</span>
+            <span class="menu-label">항목2</span>
+        </div>
+        <a href="Epro_0G.html">
+          <div class="menu-item">
+            <span class="menu-icon">📢</span>
+            <span class="menu-label">공지사항</span>
+          </div>
+        </a>
+        <div class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span class="menu-label">상세설명</span>
+        </div>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- 사이드바 토글 버튼 -->
+  <button type="button" class="sidebar-toggle-btn" id="sidebarToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- 메인 -->
+  <main class="main">
+    <div class="main-layout">
+      <div class="placeholder">
+        <!-- 지도 -->
+        <div id="vmap" style="width:100%; height:100%; min-height:500px;"></div>
+
+        <!-- 지도 안쪽 정보 사이드바 (너 원래 있던 거) -->
+        <div id="mapSidebar" class="map-sidebar">
+          <div class="map-sidebar-header">
+            <h3>🏢 건물 정보</h3>
+          </div>
+
+          <div class="map-sidebar-content">
+            <div class="map-search">
+              <h4>🔍 주소 검색</h4>
+              <div class="map-search-controls">
+                <input type="text" id="mapSearchInput" placeholder="도로명 또는 지번을 입력하세요" />
+                <button id="mapSearchBtn" class="map-search-btn">검색</button>
+              </div>
+              <p class="map-search-helper">검색 후 지도를 이동하면 상단 카메라가 해당 위치로 이동합니다.</p>
+            </div>
+
+            <div class="info-section">
+              <label>📍 도로명주소</label>
+              <div class="info-value" id="sidebar_address">건물을 클릭해주세요</div>
+            </div>
+
+            <div class="info-section">
+              <label>⏰ 노후도</label>
+              <div class="info-value highlight" id="sidebar_age">-</div>
+            </div>
+
+            <div class="info-section">
+              <label>🏷️ 고유ID</label>
+              <div class="info-value" id="sidebar_id">-</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="info-section">
+              <label>🏗️ 건물용도</label>
+              <div class="info-value" id="sidebar_purpose">-</div>
+            </div>
+
+            <div class="info-section">
+              <label>🌍 좌표</label>
+              <div class="info-value" id="sidebar_coords">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 지도 안쪽 사이드바 토글 버튼 -->
+        <button id="toggleMapSidebar" class="map-sidebar-toggle">
+          <span class="arrow">▶</span>
+        </button>
+
+        <!-- 팝업 -->
+        <div id="mapPopup" class="map-popup hidden" role="dialog" aria-live="polite">
+          <button type="button" id="mapPopupClose" class="map-popup-close" aria-label="닫기">×</button>
+          <h4 id="popupTitle" class="map-popup-title">건물 정보</h4>
+          <dl class="map-popup-list">
+            <div class="map-popup-item">
+              <dt>전체 주소</dt>
+              <dd id="popupFullAddress">정보를 불러오는 중...</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>시/도</dt>
+              <dd id="popupLevel1">-</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>시/군/구</dt>
+              <dd id="popupLevel2">-</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>읍/면/동</dt>
+              <dd id="popupLevel3">-</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>도로명</dt>
+              <dd id="popupRoad">-</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>건물번호</dt>
+              <dd id="popupBuildingNo">-</dd>
+            </div>
+            <div class="map-popup-item">
+              <dt>상세</dt>
+              <dd id="popupDetail">-</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 기존 js -->
+  <script src="{{ url_for('static', filename='script.js') }}?v=4"></script>
+
+  <!-- 검색 + 사이드바 토글 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('sidebarToggle');
+      if (!toggleBtn) return;
+
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('sidebar-collapsed');
+
+        if (window.map && typeof window.map.updateSize === 'function') {
+          setTimeout(() => window.map.updateSize(), 270);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

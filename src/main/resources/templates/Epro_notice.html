@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E pro · Notice</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css" />
+
+  <style>
+    :root { --gap: 16px; }
+    html, body { height:100%; }
+    body {
+      margin:0; background:#E3ECDF;
+      display:flex; overflow:hidden;
+      font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    }
+    .main {
+      flex:1; min-width:0; display:flex; flex-direction:column;
+      gap:var(--gap); padding:var(--gap); padding-right:28px; box-sizing:border-box; overflow:auto;
+    }
+    .topbar {
+      position:sticky; top:0; z-index:5;
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:10px 14px;
+    }
+    .panel { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px; }
+    .notice-list { width:100%; border-collapse:collapse; }
+    .notice-list th, .notice-list td { border-bottom:1px solid #eee; padding:10px 8px; font-size:14px; }
+    .notice-list th { text-align:left; color:#6b7280; font-weight:600; }
+    .notice-list tr:hover { background:#fafafa; }
+  </style>
+</head>
+<body>
+
+  <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+  <main class="main">
+    <div class="topbar"><strong>공지사항</strong></div>
+
+    <section class="panel">
+      <table class="notice-list">
+        <thead>
+          <tr>
+            <th style="width:80px;">번호</th>
+            <th>제목</th>
+            <th style="width:140px;">작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="location.href='/first-notice'">
+            <td>1</td><td>E% 시스템 업데이트 예정 안내</td><td>2025-11-12</td>
+          </tr>
+          <tr>
+            <td>2</td><td>데이터 점검 공지</td><td>2025-11-08</td>
+          </tr>
+          <tr>
+            <td>3</td><td>초기 가이드 문서 공개</td><td>2025-11-01</td>
+          </tr>
+          <tr>
+            <td>4</td><td>시스템 점검 예정 안내</td><td>2025-10-29</td>
+          </tr>
+          <tr>
+            <td>5</td><td>시스템 업데이트 정보 안내</td><td>2025-10-24</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

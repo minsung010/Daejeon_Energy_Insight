@@ -1,0 +1,19 @@
+package com.daejeon.my.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+import java.util.Map;
+
+@Mapper
+public interface EnergyUsageMapper {
+
+    /** 1. (Viz 1) '내 주택' 연도별 평균 TOE/AREA */
+    List<Map<String, Object>> findMyHouseEnergyData(@Param("matchKey") String matchKey);
+
+    /** 2. (Viz 2) '인근 주택' (키 목록)의 전체 평균 TOE/AREA */
+    Double findNearbyEnergyAverage(@Param("matchKeys") List<String> matchKeys);
+
+    /** 3. (Viz 3) '지역' (구)의 전체 평균 TOE/AREA */
+    Double findRegionEnergyAverage(@Param("guName") String guName);
+}

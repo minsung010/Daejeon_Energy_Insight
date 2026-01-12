@@ -1,0 +1,224 @@
+/*
+ * 파일: assets/custom.css
+ * 위치: GRAPH+KAKAO3.py 파일과 동일한 폴더 내 'assets' 폴더에 저장
+ */
+
+/* 🌟 Pretendard 폰트 import */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+/* 🌟 제목 스타일 (h1~h4) */
+h1, h2, h3, h4 {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-weight: 700;  /* Bold */
+    letter-spacing: -0.02em;  /* 자간 좁게 */
+}
+
+h2 {
+    font-size: 28px;
+    color: #1a1a1a;
+}
+
+h3 {
+    font-size: 22px;
+    color: #2c2c2c;
+}
+
+h4 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* 🌟 Label 텍스트도 살짝 굵게 */
+label {
+    font-weight: 500;
+    color: #444;
+}
+
+/* 기본 버튼 스타일 */
+.button-checklist label {
+    display: inline-block;
+    padding: 7px 14px;
+    margin: 4px;
+    border-radius: 8px;
+    border: 1px solid #b5d8b5;  /* 연한 녹색 테두리 */
+    background-color: #f2fff2;  /* 아주 연한 녹색 배경 */
+    color: #2f5f2f;              /* 짙은 초록 글씨 */
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.15s all ease;  /* 부드러운 애니메이션 */
+}
+
+/* 선택된 상태 (활성 토글) */
+.button-checklist label:has(input:checked),
+.button-checklist input:checked + label {
+    background-color: #b6eab6;   /* 연한 녹색 강조 */
+    border-color: #8cd98c;       /* 조금 더 진한 연녹색 */
+    color: #1f4d1f;              /* 글씨 조금 더 진하게 */
+    font-weight: 600;
+    transform: translateY(-1px); /* 눌릴 때 살짝 올라오는 효과 */
+}
+
+/* 클릭 느낌을 더 주는 hover 효과 */
+.button-checklist label:hover {
+    background-color: #e6ffe6;
+    border-color: #a5d6a5;
+}
+
+/* 체크박스 숨기기 (UI 깨끗하게) */
+.button-checklist input {
+    display: none;
+}
+
+/* 스크롤 가능 버튼 체크박스 컨테이너 */
+.button-checklist-scroll {
+    max-height: 350px;   /* 원하는 높이로 조절 */
+    overflow-y: auto;    /* 항목 많아지면 세로 스크롤 */
+    padding-right: 6px;  /* 스크롤바 겹침 방지 */
+}
+
+/* 🌟 드롭다운 스타일 모달 컨테이너 (오른쪽 정렬) */
+#year-modal-container,
+#gu-modal-container,
+#dong-modal-container {
+    position: absolute;
+    top: 100%;          /* 버튼 바로 아래 */
+    right: 0;           /* 🌟 left: 0 → right: 0으로 변경 */
+    z-index: 1000;
+    margin-top: 5px;    /* 버튼과 약간 간격 */
+}
+
+/* 🌟 모달 박스 - 드롭다운 스타일 */
+.modal-box {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 300px;           /* 모달 너비 */
+    max-height: 400px;      /* 최대 높이 */
+    overflow-y: auto;       /* 내용 많으면 스크롤 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+}
+
+/* 모달 제목 */
+.modal-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* 닫기 버튼 스타일 */
+.modal-box button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;               /* 🌟 추가: flexbox 사용 */
+    align-items: center;         /* 🌟 추가: 세로 가운데 정렬 */
+    justify-content: center;     /* 🌟 추가: 가로 가운데 정렬 */
+    line-height: 1;              /* 🌟 추가: 라인 높이 조정 */
+}
+
+.modal-box button:hover {
+    background-color: #45a049;
+}
+
+/* 🌟 모달 열기 버튼 스타일 - 드롭다운과 통일 */
+#open-year-modal-btn,
+#open-gu-modal-btn,
+#open-dong-modal-btn {
+    padding: 0 16px;             /* 🌟 상하 패딩 제거, 좌우만 유지 */
+    height: 38px;                /* 🌟 드롭다운과 동일한 높이 */
+    background-color: white;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.15s ease;
+    width: 100%;
+    text-align: left;
+}
+
+#open-year-modal-btn:hover,
+#open-gu-modal-btn:hover,
+#open-dong-modal-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+/* 모달을 감싸는 컨테이너에 relative 포지션 적용 */
+.modal-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#search-button{
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+#search-button:hover{
+    font-size: 14px;
+    color: #b0b0b0;
+    background-color: #7bc17b !important;
+}
+
+/* *******모달******* */
+/* ---------- 열림 애니메이션 ---------- */
+
+/* 모달 배경 페이드 인 */
+.modal-container {
+    animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* 모달 박스 확대 + 페이드 인 */
+.modal-box {
+    animation: scaleIn 0.25s ease-out forwards;
+}
+
+/* ---------- 닫힘 애니메이션 ---------- */
+.modal-container.hide {
+    animation: fadeOut 0.2s ease-in forwards;
+}
+
+.modal-box.hide {
+    animation: scaleOut 0.2s ease-in forwards;
+}
+
+/* ---------- keyframes ---------- */
+
+/* 배경 페이드 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* 모달 박스 확대/축소 */
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes scaleOut {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0.95); opacity: 0; }

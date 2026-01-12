@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E pro · Graph</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css" />
+
+  <style>
+    :root { --gap: 16px; }
+    html, body { height:100%; }
+    body {
+      margin:0; background:#E3ECDF;
+      display:flex; overflow:hidden;
+      font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    }
+    .main {
+      flex:1; min-width:0; display:flex; flex-direction:column;
+      gap:var(--gap); padding:var(--gap); padding-right:28px; box-sizing:border-box; overflow:auto;
+    }
+    .topbar {
+      top:0; z-index:5;
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:10px 14px;
+    }
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px; min-height:320px; text-align: center;}
+    @media (max-width:2400px) { .cards { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+  <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+  <main class="main">
+    <div class="topbar"><strong>그래프</strong></div>
+
+    <section class="cards">
+      <div class="card">
+        <iframe 
+        src="http://192.168.0.2:8050/" 
+        width="70%" 
+        height="5100px" 
+        frameborder="0">
+    </iframe>	
+    </div>
+ 
+    </section>
+  </main>
+</body>
+</html>

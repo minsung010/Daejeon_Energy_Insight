@@ -1,0 +1,160 @@
+<!-- src/main/resources/templates/fragments/sidebar.html -->
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="sidebar">
+
+  <style>
+/* 접히는 공통 사이드바 스타일 */
+.sidebar.sidebar-collapsible {
+	position: relative;
+	transition: width .25s ease;
+}
+
+/* 사이드바 안쪽 내용 – 햄버거 버튼이랑 안 겹치게 위로 여백 줌 */
+.sidebar.sidebar-collapsible .sidebar-body {
+	padding-top: 58px; /* ← 이거 늘린 거 */
+}
+
+/* 햄버거 버튼 */
+.sidebar.sidebar-collapsible .sidebar-toggle-btn {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	width: 30px;
+	height: 26px;
+	background: #d1dccf;
+	border: 1px solid #b5c3b1;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	z-index: 50;
+}
+
+.sidebar.sidebar-collapsible .sidebar-toggle-btn span {
+	display: block;
+	width: 16px;
+	height: 2px;
+	background: #324b33;
+	border-radius: 2px;
+}
+
+.menu .menu-icon {
+	width: 24px;
+	height: 24px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15px;
+}
+
+.menu .menu-icon img {
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+	display: block;
+}
+
+.sidebar.sidebar-collapsible {
+  position: relative;
+  transition: width .25s ease;
+  width: 160px;        /* ← 원하는 값으로 줄여줘 (예: 200~220px) */
+  padding-left: 16px;  /* 필요하면 여기도 같이 조절 */
+  padding-right: 16px;
+}
+
+/* 접힌 상태 */
+.sidebar.sidebar-collapsible.collapsed {
+	width: 70px;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+/* 접힌 상태에서는 글자 숨기기 */
+.sidebar.sidebar-collapsible.collapsed h2, .sidebar.sidebar-collapsible.collapsed .search-box,
+	.sidebar.sidebar-collapsible.collapsed .menu .menu-label {
+	display: none !important;
+}
+
+.sidebar.sidebar-collapsible.collapsed .menu .menu-item {
+	justify-content: center;
+	gap: 0;
+	padding: 10px 0;
+	padding-left: 15px;  
+}
+
+.menu-label {
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+</style>
+
+<aside class="sidebar sidebar-collapsible" id="appSidebar">
+  <div class="sidebar-body">
+    <a th:href="@{/}">
+      <h2 style="margin-bottom: 10px;  text-align: center;">
+        <img th:src="@{/img/Epro_logo.png}" alt="E pro 로고" style="height:90px; vertical-align:middle;">
+      </h2>
+    </a>
+
+
+	<nav class="menu">
+        <a th:href="@{/map}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3082/3082365.png" alt="지도보기 아이콘">
+            </span>
+            <span class="menu-label">Map</span>
+          </div>
+        </a>
+        <a th:href="@{/dashboard}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://png.pngtree.com/png-clipart/20230409/original/pngtree-dashboard-line-icon-png-image_9039299.png" alt="대시보드 아이콘">
+            </span>
+            <span class="menu-label">Board</span>
+          </div>
+        </a>
+        <a th:href="@{/graph}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/134/134654.png" alt="그래프 아이콘">
+            </span>
+            <span class="menu-label">Graph</span>
+          </div>
+        </a>
+        <a th:href="@{/notice}">
+          <div class="menu-item">
+            <span class="menu-icon">
+             <img src="https://img.icons8.com/?size=50&id=ulbIWuACE0IY&format=png" alt="공지사항 아이콘">
+             </span>
+            <span class="menu-label">Notice</span>
+          </div>
+        </a>
+        <a th:href="@{/detail}">
+		  <div class="menu-item">
+		    <span class="menu-icon">
+		    <img src="https://images.icon-icons.com/935/PNG/512/note-outlined-symbol_icon-icons.com_73198.png" alt="상세설명 아이콘">
+		    </span>
+		    <span class="menu-label">Detail</span>
+		  </div>
+		</a>
+      </nav>
+    </div>
+
+    <!-- 햄버거 버튼 -->
+    <button type="button"
+            class="sidebar-toggle-btn"
+            onclick="(function(){ const sb=document.getElementById('appSidebar'); if(sb){ sb.classList.toggle('collapsed'); } })();">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </aside>
+</th:block>

@@ -1,0 +1,18 @@
+nohup: 입력 무시
+[2025-11-20 14:27:54 +0900] [17966] [INFO] Starting gunicorn 23.0.0
+[2025-11-20 14:27:54 +0900] [17966] [INFO] Listening at: http://0.0.0.0:8050 (17966)
+[2025-11-20 14:27:54 +0900] [17966] [INFO] Using worker: sync
+[2025-11-20 14:27:54 +0900] [17967] [INFO] Booting worker with pid: 17967
+[2025-11-20 14:27:54 +0900] [17979] [INFO] Booting worker with pid: 17979
+[2025-11-20 14:27:54 +0900] [17991] [INFO] Booting worker with pid: 17991
+[2025-11-20 14:27:54 +0900] [18003] [INFO] Booting worker with pid: 18003
+[2025-11-20 17:52:57 +0900] [17966] [INFO] Handling signal: hup
+[2025-11-20 17:52:57 +0900] [17966] [INFO] Hang up: Master
+[2025-11-20 17:52:57 +0900] [25453] [INFO] Booting worker with pid: 25453
+[2025-11-20 17:52:57 +0900] [25450] [INFO] Booting worker with pid: 25450
+[2025-11-20 17:52:57 +0900] [25446] [INFO] Booting worker with pid: 25446
+[2025-11-20 17:52:57 +0900] [25448] [INFO] Booting worker with pid: 25448
+[2025-11-20 17:52:57 +0900] [17966] [ERROR] Worker (pid:17979) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [17966] [ERROR] Worker (pid:17967) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [17966] [ERROR] Worker (pid:18003) was sent SIGHUP!
+[2025-11-20 17:52:57 +0900] [17966] [ERROR] Worker (pid:17991) was sent SIGHUP!

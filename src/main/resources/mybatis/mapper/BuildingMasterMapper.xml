@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daejeon.my.dao.BuildingMasterMapper">
+
+  <select id="findCandidatesByBoundingBox" resultType="java.util.LinkedHashMap">
+    SELECT *
+    FROM (
+      SELECT
+        bm.MATCH_KEY,
+        bm.BILD_ID,
+        bm.INNB,
+        bm.SPCG_CLSF,
+        bm.VLTN_BILD,
+        bm.LEGALDONG,
+        bm.LNNO,
+        bm.GU_NAME,
+        bm.LOCATION,
+        bm.LEGALDONG_KEY,
+        bm.BILD_PRPOS,
+        bm.BILD_AREA,
+        bm.GRFA,
+        bm.SIAR,
+        bm.HGHT,
+        bm.BTLR,
+        bm.FART,
+        bm.LATITUDE,
+        bm.LONGITUDE,
+        bm.USE_APRV_Y,
+        bm.DATA_STNDT,
+        bm.BULD_SPANU,
+        bm.BULD_SPANU_NUM,
+        ((bm.LATITUDE - #{targetLat}) * (bm.LATITUDE - #{targetLat})
+          + (bm.LONGITUDE - #{targetLon}) * (bm.LONGITUDE - #{targetLon})) AS DISTANCE_SQ
+      FROM BUILDING_MASTER bm
+      WHERE bm.LATITUDE BETWEEN #{minLat} AND #{maxLat}
+        AND bm.LONGITUDE BETWEEN #{minLon} AND #{maxLon}
+      ORDER BY DISTANCE_SQ
+    )
+    WHERE ROWNUM &lt;= #{limit}
+  </select>
+
+</mapper>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Match Key로 좌표 조회</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    label { display:block; margin-bottom: 8px; font-weight: 600; }
+    input { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; }
+    button { margin-top:12px; padding:10px 14px; border:0; border-radius:8px; cursor:pointer; }
+    table { width:100%; border-collapse: collapse; margin-top:16px; }
+    th, td { border:1px solid #eee; padding:8px; text-align:left; }
+    th { background:#fafafa; }
+    .hint { color:#666; font-size: 0.9rem; margin-top: 4px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Match Key로 위도/경도dsasad 조회</h1>
+  <label for="mk">Match Key</label>
+  <input id="mk" placeholder="예: ABC123" />
+  <div class="hint">DB의 BUILDING_LOCATION.match_key 기준으로 조회합니다.</div>
+  <button id="btn">조회</button>
+
+  <table id="result" style="display:none;">
+    <thead>
+      <tr><th>match_key</th><th>latitude</th><th>longitude</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  document.getElementById('btn').addEventListener('click', async () => {
+    const mk = document.getElementById('mk').value.trim();
+    if (!mk) { alert('match_key를 입력하세요.'); return; }
+
+    const res = await fetch(`/api/locations?matchKey=${encodeURIComponent(mk)}`);
+    if (!res.ok) { alert('조회 실패'); return; }
+    const data = await res.json();
+
+    const table = document.getElementById('result');
+    const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3">결과 없음</td></tr>';
+    } else {
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.matchKey ?? ''}</td>
+          <td>${row.latitude ?? ''}</td>
+          <td>${row.longitude ?? ''}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    table.style.display = 'table';
+  });
+</script>
+</body>
+</html>

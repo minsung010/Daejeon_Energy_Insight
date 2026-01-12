@@ -1,0 +1,169 @@
+<!-- src/main/resources/templates/fragments/sidebar.html -->
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="sidebar">
+
+  <style>
+/* 접히는 공통 사이드바 스타일 */
+.sidebar.sidebar-collapsible {
+	position: relative;
+	transition: width .25s ease;
+}
+
+/* 사이드바 안쪽 내용 – 햄버거 버튼이랑 안 겹치게 위로 여백 줌 */
+.sidebar.sidebar-collapsible .sidebar-body {
+	padding-top: 20px; /* ← 이거 늘린 거 */
+}
+
+/* 햄버거 버튼 */
+
+.sidebar.sidebar-collapsible .sidebar-toggle-btn img {
+	display: block;
+	width: 30px;
+	height: 30px;
+	margin-right: 18px;
+	border-radius: 2px;
+}
+
+.menu .menu-icon {
+	width: 30px;
+	height: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15px;
+}
+
+.menu .menu-icon img {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+	display: block;
+}
+
+.sidebar.sidebar-collapsible {
+  position: relative;
+  transition: width .25s ease;
+  width: 180px;        /* ← 원하는 값으로 줄여줘 (예: 200~220px) */
+  padding-left: 16px;  /* 필요하면 여기도 같이 조절 */
+  padding-right: 16px;
+}
+
+/* 접힌 상태 */
+.sidebar.sidebar-collapsible.collapsed {
+	width: 70px;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+/* 접힌 상태에서는 글자 숨기기 */
+.sidebar.sidebar-collapsible.collapsed h2, .sidebar.sidebar-collapsible.collapsed .search-box,
+	.sidebar.sidebar-collapsible.collapsed .menu .menu-label {
+	display: none !important;
+}
+
+.sidebar.sidebar-collapsible.collapsed .menu .menu-item {
+	justify-content: center;
+	gap: 0;
+	padding: 10px 0;
+	padding-left: 15px;  
+}
+
+.menu-label {
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-weight: bold;
+  color: #F7FBF2;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 햄버거 버튼 배경 없애기 */
+.sidebar-toggle-btn {
+  position: absolute;   /* 필요하면 위치는 그대로 사용 */
+  top: 16px;
+  right: 12px;
+  margin-right: 18px;
+
+  padding: 0;
+  margin: 0;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 아이콘 이미지도 배경/테두리 제거 */
+.sidebar.sidebar-collapsible .sidebar-toggle-btn img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
+  background: transparent !important;
+  border: none !important;
+}
+</style>
+
+<aside class="sidebar sidebar-collapsible" id="appSidebar">
+  <div class="sidebar-body">
+    <a th:href="@{/}">
+    <br>
+      <h2 style="margin-bottom: 20px;  text-align: center;">
+        <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/c6d96dbbf9d684de31340460d54f0aa687dbaa88/251114_01/epro_main_logo_psd.png" alt="E pro 로고" style="height:80px; vertical-align:middle;">
+         <br>
+         <p style="font-size:24px; color: #36683a">Epro</p>
+         <br>
+      </h2>
+    </a>
+
+
+	<nav class="menu">
+        <a th:href="@{/map}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/ad3fc4b579707124e54012c44d989b433b70e987/251114_01/epro_sidde_logo_03.png" alt="지도보기 아이콘">
+            </span>
+            <span class="menu-label">Map</span>
+          </div>
+        </a>
+        <a th:href="@{/dashboard}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/ad3fc4b579707124e54012c44d989b433b70e987/251114_01/epro_sidde_logo_08.png" alt="대시보드 아이콘">
+            </span>
+            <span class="menu-label">Board</span>
+          </div>
+        </a>
+        <a th:href="@{/graph}">
+          <div class="menu-item">
+            <span class="menu-icon">
+            <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/ad3fc4b579707124e54012c44d989b433b70e987/251114_01/epro_sidde_logo_04.png" alt="그래프 아이콘">
+            </span>
+            <span class="menu-label">Graph</span>
+          </div>
+        </a>
+        <a th:href="@{/notice}">
+          <div class="menu-item">
+            <span class="menu-icon">
+             <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/72956a8bb14ad2fd8dc20be66c15a643378701bc/251114_01/epro_sidde_logo_10.png" alt="공지사항 아이콘">
+             </span>
+            <span class="menu-label">Notice</span>
+          </div>
+        </a>
+        <a th:href="@{/detail}">
+		  <div class="menu-item">
+		    <span class="menu-icon">
+		    <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/72956a8bb14ad2fd8dc20be66c15a643378701bc/251114_01/epro_sidde_logo_09.png" alt="상세설명 아이콘">
+		    </span>
+		    <span class="menu-label">Detail</span>
+		  </div>
+		</a>
+      </nav>
+    </div>
+
+    <!-- 햄버거 버튼 -->
+    <span type="button" class="sidebar-toggle-btn">
+		    <img src="https://media.githubusercontent.com/media/AKCU-ryu/E-/72956a8bb14ad2fd8dc20be66c15a643378701bc/251114_01/epro_sidde_logo_11.png" alt="상세설명 아이콘" onclick="(function(){ const sb=document.getElementById('appSidebar'); if(sb){ sb.classList.toggle('collapsed'); } })();">
+    </span>
+
+  </aside>
+</th:block>
