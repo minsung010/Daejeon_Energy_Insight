@@ -1,18 +1,18 @@
-# 🏙️ Daejeon Energy Insight (E-PRO)
+#  Daejeon Energy Insight (E-PRO)
 
 > **"데이터 기반의 도심 에너지 효율 최적화 플랫폼"**  
 > 대전광역시 3D 건물 에너지 통합 분석 및 AI 소비 예측 시뮬레이터
 
 ![Project Banner](assets/project_banner.png)
 
-## 📝 프로젝트 개요 (Project Overview)
+##  프로젝트 개요 (Project Overview)
 
 **Daejeon Energy Insight**는 대전광역시의 건물 에너지(전기/가스) 사용량을 **3D 지도(V-World)** 기반으로 시각화하고, **AI(Prophet)**를 활용해 미래 에너지 수요를 예측하는 통합 관리 플랫폼입니다.
 단순한 통계 조회를 넘어, 개별 건물의 에너지 효율을 정밀 진단하고 이웃 건물과 비교(Benchmarking)함으로써 **'노후 건물'의 에너지 낭비 문제**를 데이터로 입증하고 개선 방향을 제시합니다.
 
 ---
 
-## 🚀 핵심 기능 (Key Features)
+##  핵심 기능 (Key Features)
 
 ### 1. 3D 건물 시각화 (3D Visualization)
 - **V-World WebGL API**를 활용하여 대전시 전역의 건물을 실제와 같은 3D로 구현했습니다.
@@ -36,7 +36,7 @@
 
 ---
 
-## 🛠️ 사용 기술 (Tech Stack)
+##  사용 기술 (Tech Stack)
 
 | **분류 (Category)** | **기술 (Technology)** | **용도 (Usage)** |
 | :--- | :--- | :--- |
@@ -48,7 +48,7 @@
 
 ---
 
-## ⚙️ 기술적 도전 및 해결 과정 (Engineering Challenges)
+##  기술적 도전 및 해결 과정 (Engineering Challenges)
 
 ### 1. 대용량 공공 데이터 전처리
 - **문제점**: 수 GB에 달하는 대용량 CSV 파일을 일반적인 방법으로 열 수 없었고, 메모리 부족 오류(OOM)가 발생했습니다.
@@ -68,7 +68,7 @@
 
 ---
 
-## 📂 폴더 구조 (Repository Structure)
+##  폴더 구조 (Repository Structure)
 
 ```
 Daejeon_Energy_Insight/
@@ -80,7 +80,7 @@ Daejeon_Energy_Insight/
 
 ---
 
-## 👨‍💻 개발자 (Author)
+##  개발자 (Author)
 
 *   **MinSung** (Project Lead, Full-Stack Developer)
 *   **역할**: 3D 지도 구현, AI 모델 연동 및 데이터 처리 파이프라인 구축
